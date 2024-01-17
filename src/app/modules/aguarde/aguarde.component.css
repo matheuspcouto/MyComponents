@@ -1,0 +1,68 @@
+.card-title {
+  margin-bottom: 30px;
+}
+
+.content {
+  width: 90%;
+  height: auto;
+  border-radius: 1.5rem;
+  font-family: "Abecedary", sans-serif;
+}
+
+.content-timer {
+  justify-content: center;
+  position: relative;
+  left: 5%;
+  display: flex;
+}
+
+.content-h,
+.content-m,
+.content-s .content-d {
+  height: 5rem;
+}
+
+.time {
+  font-size: 100px;
+  text-align: center;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+span {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+@media (max-width: 450px) {
+  .content {
+    width: 90%;
+    height: auto;
+  }
+
+  .content-timer {
+    justify-content: center;
+    position: relative;
+    display: block;
+  }
+
+  .content-h,
+  .content-m,
+  .content-s .content-d {
+    height: 2%;
+  }
+
+  .time {
+    font-size: 100px;
+    text-align: center;
+    font-weight: 300;
+    color: var(--blue);
+  }
+
+  span {
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--blue);
+  }
+}

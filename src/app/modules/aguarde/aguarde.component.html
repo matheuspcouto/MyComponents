@@ -1,0 +1,49 @@
+<div *ngIf="loading">
+  <app-loadder></app-loadder>
+</div>
+
+<section class="h-100 mt-3 section mb-3" *ngIf="!loading">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <div class="card fat">
+          <div class="card-body" style="background-color: white">
+            <div class="divImg mt-3"><img src="assets/havyla.jpg" class="img img-thumbnail rounded-circle" /></div>
+            <h2 class="card-title text-center mt-3 font-dateline">
+              Havyla
+            </h2>
+            <br>
+            <h3 class="card-title text-center font-abecedary">Estou preparando algo bem legal, tente segurar a ansiedade
+              e aguarde !</h3>
+
+            <div *ngIf="contagem()">
+              <h4 class="card-title text-center mt-3 font-abecedary">
+                Faltam exatamente:
+              </h4>
+              <div class="content" [class.move]="animate">
+                <div class="content-timer">
+                  <div class="content-d">
+                    <div class="time">{{ days | number:'2.0'}}<span>d</span></div>
+                  </div>
+                  <div class="content-h">
+                    <div class="time">{{ hours | number:'2.0'}}<span>h</span></div>
+                  </div>
+                  <div class="content-m">
+                    <div class="time">{{ minutes | number:'2.0'}}<span>m</span></div>
+                  </div>
+                  <div class="content-s">
+                    <div class="time">{{seconds | number:'2.0'}}<span>s</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+            <app-footer></app-footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
