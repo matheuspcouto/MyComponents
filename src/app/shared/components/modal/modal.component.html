@@ -1,19 +1,17 @@
 <div *ngIf="exibirModal && modal" class="modal">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div [class]="modal.isTelaInteira ? 'modal-content modal-tela-cheia' : 'modal-content modal-metade-tela'">
       <div class="modal-header">
-        <h5 class="modal-title font-dateline">{{ modal.titulo }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" (click)="fecharModal()">&times;</span>
-        </button>
+        <h3 class="modal-title">{{ modal.titulo }}</h3>
       </div>
-      <div class="modal-body mt-3">
-        {{ modal.texto }}
+      <div class="modal-body">
+        <!-- TODO: colocar Imagem -->
+        <img *ngIf="modal.imagem && !modal.isMetadeTela" [src]="modal.imagem" class="img img-fluid">
+        <h5 class="modal-title">{{ modal.texto }}</h5>
       </div>
-      <div class="modal-footer mt-3">
-        <button type="button" class="btn btn-outline-primary font-abecedary"
-          (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-secondary font-abecedary"
+      <div [class]="modal.isTelaInteira ? 'modal-footer modal-footer-tela-cheia' : 'modal-footer modal-footer-metade-tela'">
+        <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary"
           (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
       </div>
     </div>

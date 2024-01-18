@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { take, tap } from 'rxjs/operators';
-
 @Injectable({ providedIn: 'root' })
 export class ModalService {
 
@@ -12,16 +10,11 @@ export class ModalService {
     this.action$.next(false);
   }
 
-  show(): Promise<boolean> {
+  show() {
     this.lastFocusElement = document.activeElement;
-
-    return this.action$.pipe(
-      take(1),
-      tap(() => {
-        if (this.lastFocusElement) {
-          (this.lastFocusElement as any).focus();
-        }
-      })
-    ).toPromise();
+    this.action$.next(true);
+    if (this.lastFocusElement) {
+      (this.lastFocusElement as any).focus();
+    }
   }
 }
