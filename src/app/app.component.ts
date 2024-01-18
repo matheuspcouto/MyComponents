@@ -38,4 +38,9 @@ export class AppComponent {
     this.modal?.abrirModal(MODAL);
   }
 
+  abrirLoading() {
+    this.loading = true;
+    setTimeout(() => this.loading = false, 5000);
+  }
+
 }
