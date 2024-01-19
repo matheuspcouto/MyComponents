@@ -1,15 +1,19 @@
 /* FOOTER */
 
+:root {
+  --red: #C3002F;
+}
+
 .footer {
   margin: 40px 0;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-align: center;
 }
 
 .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: var(--blue);
+  background: var(--red);
   color: #E5E5E5;
   line-height: 1;
   padding: 8px 0;
@@ -23,6 +27,6 @@
 
 .social-links a:hover {
   background: #E5E5E5;
-  color: var(--blue);
+  color: var(--red);
   text-decoration: none;
 }

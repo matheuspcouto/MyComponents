@@ -1,17 +1,35 @@
 <div *ngIf="exibirModal && modal" class="modal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div [class]="modal.isTelaInteira ? 'modal-content modal-tela-cheia' : 'modal-content modal-metade-tela'">
-      <div class="modal-header">
-        <h3 class="modal-title">{{ modal.titulo }}</h3>
-      </div>
+  <div *ngIf="!modal.isTelaInteira" class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-metade-tela">
       <div class="modal-body">
-        <img *ngIf="modal.imagem && !modal.isMetadeTela" [src]="modal.imagem" class="img img-fluid">
+        <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
         <h5 class="modal-title">{{ modal.texto }}</h5>
       </div>
-      <div [class]="modal.isTelaInteira ? 'modal-footer modal-footer-tela-cheia' : 'modal-footer modal-footer-metade-tela'">
+      <div
+        class="modal-footer modal-footer-metade-tela">
         <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary"
+        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary" style="border: none"
           (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="modal.isTelaInteira">
+    <div class="modal-content modal-tela-cheia">
+      <div class="modal-header">
+        <img *ngIf="modal.imagem" [src]="modal.imagem" class="img img-fluid">
+      </div>
+      <div class="modal-body modal-body-tela-cheia">
+        <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
+        <h5 class="modal-title">{{ modal.texto }}</h5>
+      </div>
+      <div class="modal-footer modal-footer-tela-cheia">
+        <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary" style="border: none"
+          (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
+
+        <button *ngIf="btnCopiarMensagemErro" type="button" class="btn btn-outline-secondary" style="border: none"
+          (click)="copiarCodigo($event)"><i class="fa fa-copy"></i> Copiar erro</button>
       </div>
     </div>
   </div>

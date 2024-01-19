@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { getLoginValidationErrors } from './login.validator';
 import { Router } from '@angular/router';
 import { Rotas } from 'src/app/shared/enums/rotas-enum';
-import { FluxoErro } from 'src/app/shared/models/erro';
-import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'login',
@@ -18,7 +16,7 @@ export class LoginComponent {
   errorsValidators: any = [];
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router, private fluxoErro: FluxoErro) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   entrar() {
     this.errorsValidators = getLoginValidationErrors(this.email, this.senha);

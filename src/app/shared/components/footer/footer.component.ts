@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
-  //TODO: Colocar Número de contato ?
-
+  anoAtual = new Date().getFullYear();
 }

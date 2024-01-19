@@ -33,18 +33,25 @@
     <input type="hidden" #selection>
 
     <div class="card-container">
-      <button class="card card-small" (click)="abrirModalMetadeTela()" tabindex="0">
+      <button class="card card-small" (click)="abrirModalConfirmacao()" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
         </svg>
-        <span>Modal Metade Tela</span>
+        <span>Modal de Confirmação - Metade Tela</span>
       </button>
 
-      <button class="card card-small" (click)="abrirModalTelaInteira()" tabindex="0">
+      <button class="card card-small" (click)="abrirModalAviso()" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
         </svg>
-        <span>Modal Tela Inteira</span>
+        <span>Modal de Aviso - Tela Inteira</span>
+      </button>
+
+      <button class="card card-small" (click)="abrirModalErro()" tabindex="0">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+        <span>Modal de Erro - Tela Inteira</span>
       </button>
 
       <button class="card card-small" (click)="abrirLoading()" tabindex="0">
@@ -54,32 +61,27 @@
         <span>Loadder</span>
       </button>
 
-    </div>
-
-    <h2>Telas</h2>
-
-    <div class="card-container">
-      <button class="card card-small" (click)="abrirModalMetadeTela()" tabindex="0">
+      <button class="card card-small" (click)="mostrarNotificacao()" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
         </svg>
-        <span>Login</span>
-      </button>
-
-      <button class="card card-small" (click)="abrirModalTelaInteira()" tabindex="0">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-        </svg>
-        <span>Aguarde</span>
+        <span>Notificação Toast</span>
       </button>
 
     </div>
 
     <h2>Inputs</h2>
 
+    <router-outlet></router-outlet>
+
+    <h2>Footer</h2>
+    <app-footer></app-footer>
+
   </div>
 
-  <router-outlet></router-outlet>
+  <h2>Tela de Login</h2>
+  <login></login>
+
 </div>
 
 <div *ngIf="loading">

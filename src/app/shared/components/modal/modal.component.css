@@ -22,9 +22,11 @@
 }
 
 .modal-header {
+  display: block;
   border: none;
   align-items: center;
   justify-content: center;
+  padding-top: 10%;
 }
 
 .modal-footer {
@@ -35,6 +37,10 @@
   margin: 0 auto;
   text-align: center;
   width: 100%;
+}
+
+.modal-title {
+  text-align: center;
 }
 
 .btn {
@@ -74,9 +80,13 @@
     width: 100%;
   }
 
+  .modal-body-tela-cheia {
+    bottom: 15%;
+  }
+
   .modal-metade-tela {
-    height: 60%;
-    top: 20%;
+    height: 50%;
+    top: 25%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -87,7 +97,7 @@
   }
 
   .modal-footer-metade-tela {
-    height: 40%;
+    height: 50%;
     border-top: none;
   }
 
