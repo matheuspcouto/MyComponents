@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { LoadderComponent } from './shared/components/loadder/loadder.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { LoginComponent } from './modules/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './guards/auth.guard';
 import { SiteAtivoGuard } from './guards/site-ativo.guard';
-import { AguardeComponent } from './modules/aguarde/aguarde.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +20,6 @@ import { AguardeComponent } from './modules/aguarde/aguarde.component';
     ModalComponent,
     LoadderComponent,
     FooterComponent,
-    LoginComponent,
-    AguardeComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, TipoModal } from './shared/components/modal/modal.component';
-import { Router } from '@angular/router';
 import { Rotas } from './shared/enums/rotas-enum';
 import { FluxoErro } from './shared/fluxo-erro';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,30 @@ export class AppComponent {
   title = 'MyComponents';
   loading = false;
   erro: any;
+  tiposMembro = ['Membro', 'Líder', 'Pastor'];
+  sexos = ['Masculino', 'Feminino'];
   @ViewChild('modal', { static: true }) modal: ModalComponent | undefined;
 
-  constructor(private router: Router, private notificationService: ToastrService) { }
+  formGroup: FormGroup = this.formBuild.group({
+    nome: [''],
+    sobrenome: [''],
+    idade: [''],
+    dataNasc: ['', Validators.required],
+    telefone: ['', Validators.required],
+    cpfCnpj: ['', Validators.required],
+    descricao: [''],
+    email: ['', Validators.required],
+    senha: ['', Validators.required],
+    tipoMembroSelecionado: [this.tiposMembro[0], Validators.required],
+    batizado: [false, Validators.required],
+  });
+  errorsValidators: any;
+  disabled = false;
+  mascaraTelefone = '(00) 00000-0009';
+  mascaraCpfCnpj = '000.000.000-00'; // TODO: Implementar máscara de CPF e CNPJ
+  batizado: boolean = false;
+
+  constructor(private notificationService: ToastrService, private formBuild: FormBuilder) { }
 
   abrirModalConfirmacao() {
     const MODAL = {
@@ -69,8 +90,8 @@ export class AppComponent {
     this.notificationService.info('Notificação de informação', 'Título da notificação');
   }
 
-  redirectLogin() {
-    this.router.navigate([Rotas.LOGIN]);
+  // TODO: Implementar validação
+  enviar() {
+    console.log(this.formGroup.value);
   }
-
 }
