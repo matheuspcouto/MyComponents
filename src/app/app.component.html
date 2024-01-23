@@ -77,8 +77,8 @@
       <div class="row mt-3">
         <div class="form-group col-md-6 mb-3">
           <label for="nome" class="form-label">Nome</label>
-          <input id="nome" type="text" class="form-control" formControlName="nome" [disabled]="disabled" />
-          <div *ngIf="errorsValidators" class="invalid-feedback">
+          <input id="nome" type="text" class="form-control" formControlName="nome" />
+          <div *ngIf="errorsValidators">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'nome'">{{erro.mensagemErro}}</p>
             </div>
@@ -87,8 +87,8 @@
 
         <div class="form-group col-md-6">
           <label for="sobrenome" class="form-label">Sobrenome</label>
-          <input id="sobrenome" type="text" class="form-control" formControlName="sobrenome" [disabled]="disabled" />
-          <div *ngIf="errorsValidators" class="invalid-feedback">
+          <input id="sobrenome" type="text" class="form-control" formControlName="sobrenome" />
+          <div *ngIf="errorsValidators">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'sobrenome'">{{erro.mensagemErro}}</p>
             </div>
@@ -99,8 +99,7 @@
       <div class="row mt-3">
         <div class="col-md-6 mr-3">
           <label for="idade" class="form-label">Idade</label>
-          <input id="idade" type="number" class="form-control text-center mb-3" formControlName="idade"
-            [disabled]="disabled" />
+          <input id="idade" type="number" class="form-control text-center mb-3" formControlName="idade" />
           <div *ngIf="errorsValidators" class="invalid-feedback">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'idade'">{{erro.mensagemErro}}</p>
@@ -110,7 +109,7 @@
 
         <div class="col-md-6">
           <label for="dataNasc" class="form-label">Data de Nascimento</label>
-          <input id="dataNasc" type="date" class="form-control" formControlName="dataNasc" [disabled]="disabled">
+          <input id="dataNasc" type="date" class="form-control" formControlName="dataNasc">
           <div *ngIf="errorsValidators" class="invalid-feedback">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'dataNasc'">{{erro.mensagemErro}}</p>
@@ -122,8 +121,7 @@
       <div class="row mt-3">
         <div class="form-group col-md-6">
           <label for="telefone" class="form-label">Telefone</label>
-          <input id="telefone" type="text" class="form-control mb-3" formControlName="telefone" [mask]="mascaraTelefone"
-            [placeholder]="mascaraTelefone" [disabled]="disabled" />
+          <input id="telefone" type="text" class="form-control mb-3" formControlName="telefone" [mask]="mascaraTelefone" />
           <div *ngIf="errorsValidators" class="invalid-feedback">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'telefone'">{{erro.mensagemErro}}</p>
@@ -133,8 +131,7 @@
 
         <div class="form-group col-md-6">
           <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-          <input id="cpfCnpj" type="text" class="form-control" formControlName="cpfCnpj" [mask]="mascaraCpfCnpj"
-            [placeholder]="mascaraCpfCnpj" [disabled]="disabled" />
+          <input id="cpfCnpj" type="text" class="form-control" formControlName="cpfCnpj" [mask]="mascaraCpfCnpj" />
           <div *ngIf="errorsValidators" class="invalid-feedback">
             <div *ngFor="let erro of errorsValidators">
               <p *ngIf="erro.controleErro === 'cpfCnpj'">{{erro.mensagemErro}}</p>
@@ -145,8 +142,7 @@
 
       <div class="form-group mt-3">
         <label for="descricao" class="form-label">Descrição</label>
-        <textarea id="descricao" rows="5" formControlName="descricao" class="form-control"
-          [disabled]="disabled"></textarea>
+        <textarea id="descricao" rows="5" formControlName="descricao" class="form-control"></textarea>
         <div *ngIf="errorsValidators" class="invalid-feedback">
           <div *ngFor="let erro of errorsValidators">
             <p *ngIf="erro.controleErro === 'descricao'">{{erro.mensagemErro}}</p>
@@ -156,8 +152,7 @@
 
       <div class="form-group mt-3">
         <label for="email" class="form-label">Email</label>
-        <input id="email" type="text" placeholder="teste@teste.com" formControlName="email" class="form-control"
-          [disabled]="disabled" />
+        <input id="email" type="text" placeholder="teste@teste.com" formControlName="email" class="form-control" />
         <div *ngIf="errorsValidators" class="invalid-feedback">
           <div *ngFor="let erro of errorsValidators">
             <p *ngIf="erro.controleErro === 'email'">{{erro.mensagemErro}}</p>
@@ -167,7 +162,7 @@
 
       <div class="form-group mt-3">
         <label for="senha" class="form-label">Senha</label>
-        <input id="senha" type="password" class="form-control" formControlName="senha" [disabled]="disabled" />
+        <input id="senha" type="password" class="form-control" formControlName="senha" />
         <div *ngIf="errorsValidators" class="invalid-feedback">
           <div *ngFor="let erro of errorsValidators">
             <p *ngIf="erro.controleErro === 'senha'">{{erro.mensagemErro}}</p>
@@ -179,8 +174,7 @@
         <div class="form-group col-md-6">
           <label for="senha" class="form-label">Tipo de Membro</label>
           <div class="form-group">
-            <select id="tipoMembro" class="form-select form-select-sm" formControlName="tipoMembroSelecionado"
-              [disabled]="disabled">
+            <select id="tipoMembro" class="form-select form-select-sm" formControlName="tipoMembroSelecionado">
               <option *ngFor="let tipo of tiposMembro; let i = index" (selected)="i === 0">
                 {{ tipo }}
               </option>
@@ -195,15 +189,14 @@
 
         <div class="form-group col-md-6 mt-3">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" (value)="batizado" id="batizado" formControlName="batizado"
-              [disabled]="disabled">
+            <input class="form-check-input" type="checkbox" (value)="batizado" id="batizado" formControlName="batizado">
             <label class="form-check-label" for="batizado">Já é batizado ?</label>
           </div>
         </div>
       </div>
 
       <div class="col-12 mt-3">
-        <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+        <button class="btn btn-primary" type="submit" (click)="enviar()">Enviar</button>
       </div>
     </form>
 

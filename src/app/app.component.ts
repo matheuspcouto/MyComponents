@@ -1,16 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent, TipoModal } from './shared/components/modal/modal.component';
 import { Rotas } from './shared/enums/rotas-enum';
 import { FluxoErro } from './shared/fluxo-erro';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailValidator, getValidationErrors, idadeValidator, nomeValidator, senhaValidator, telefoneValidator } from './app.validator';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'MyComponents';
   loading = false;
   erro: any;
@@ -19,25 +20,31 @@ export class AppComponent {
   @ViewChild('modal', { static: true }) modal: ModalComponent | undefined;
 
   formGroup: FormGroup = this.formBuild.group({
-    nome: [''],
-    sobrenome: [''],
-    idade: [''],
-    dataNasc: ['', Validators.required],
-    telefone: ['', Validators.required],
-    cpfCnpj: ['', Validators.required],
-    descricao: [''],
-    email: ['', Validators.required],
-    senha: ['', Validators.required],
+    nome: [null, nomeValidator],
+    sobrenome: [null, nomeValidator],
+    idade: [null, idadeValidator],
+    dataNasc: [null, Validators.required],
+    telefone: [null, telefoneValidator],
+    cpfCnpj: [null, Validators.required],
+    descricao: [null],
+    email: [null, emailValidator],
+    senha: [null, senhaValidator],
     tipoMembroSelecionado: [this.tiposMembro[0], Validators.required],
-    batizado: [false, Validators.required],
+    batizado: [false],
   });
   errorsValidators: any;
-  disabled = false;
-  mascaraTelefone = '(00) 00000-0009';
-  mascaraCpfCnpj = '000.000.000-00'; // TODO: Implementar máscara de CPF e CNPJ
+  mascaraTelefone = '(00) 00000-0000';
+  mascaraCpfCnpj = '000.000.000-00';
   batizado: boolean = false;
 
   constructor(private notificationService: ToastrService, private formBuild: FormBuilder) { }
+
+  ngOnInit() {
+    this.formGroup.get('cpfCnpj')?.valueChanges.subscribe((value) => {
+      this.mascaraCpfCnpj = value.length > 11 ? '00.000.000/0000-00' : '000.000.000-00';
+    });
+
+  }
 
   abrirModalConfirmacao() {
     const MODAL = {
@@ -92,6 +99,9 @@ export class AppComponent {
 
   // TODO: Implementar validação
   enviar() {
-    console.log(this.formGroup.value);
+    this.errorsValidators = getValidationErrors(this.formGroup);
+
+    console.log(this.errorsValidators);
+
   }
 }
