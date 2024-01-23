@@ -5,8 +5,7 @@
         <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
         <h5 class="modal-title">{{ modal.texto }}</h5>
       </div>
-      <div
-        class="modal-footer modal-footer-metade-tela">
+      <div class="modal-footer modal-footer-metade-tela">
         <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
         <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary" style="border: none"
           (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
@@ -29,7 +28,8 @@
           (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
 
         <button *ngIf="btnCopiarMensagemErro" type="button" class="btn btn-outline-secondary" style="border: none"
-          (click)="copiarCodigo($event)"><i class="fa fa-copy"></i> Copiar erro</button>
+          (click)="copiarCodigo($event)"><i [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
+          Copiar Erro</button>
       </div>
     </div>
   </div>

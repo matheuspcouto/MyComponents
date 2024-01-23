@@ -4,7 +4,7 @@ import { Rotas } from './shared/enums/rotas-enum';
 import { FluxoErro } from './shared/fluxo-erro';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { emailValidator, getValidationErrors, idadeValidator, nomeValidator, senhaValidator, telefoneValidator } from './app.validator';
+import { emailValidator, telefoneValidator, AppValidator, cnpjValidator, cpfValidator } from './app.validator';
 
 @Component({
   selector: 'app-root',
@@ -20,16 +20,16 @@ export class AppComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal: ModalComponent | undefined;
 
   formGroup: FormGroup = this.formBuild.group({
-    nome: [null, nomeValidator],
-    sobrenome: [null, nomeValidator],
-    idade: [null, idadeValidator],
-    dataNasc: [null, Validators.required],
-    telefone: [null, telefoneValidator],
-    cpfCnpj: [null, Validators.required],
-    descricao: [null],
-    email: [null, emailValidator],
-    senha: [null, senhaValidator],
-    tipoMembroSelecionado: [this.tiposMembro[0], Validators.required],
+    nome: ['', Validators.nullValidator],
+    sobrenome: ['', Validators.nullValidator],
+    idade: ['', Validators.nullValidator],
+    dataNasc: ['', Validators.nullValidator],
+    telefone: ['', telefoneValidator],
+    cpfCnpj: ['', Validators.nullValidator],
+    descricao: [''],
+    email: ['', emailValidator],
+    senha: ['', Validators.nullValidator],
+    tipoMembroSelecionado: [this.tiposMembro[0], Validators.nullValidator],
     batizado: [false],
   });
   errorsValidators: any;
@@ -40,10 +40,7 @@ export class AppComponent implements OnInit {
   constructor(private notificationService: ToastrService, private formBuild: FormBuilder) { }
 
   ngOnInit() {
-    this.formGroup.get('cpfCnpj')?.valueChanges.subscribe((value) => {
-      this.mascaraCpfCnpj = value.length > 11 ? '00.000.000/0000-00' : '000.000.000-00';
-    });
-
+    this.atualizarValidatorsForm();
   }
 
   abrirModalConfirmacao() {
@@ -97,11 +94,29 @@ export class AppComponent implements OnInit {
     this.notificationService.info('Notificação de informação', 'Título da notificação');
   }
 
-  // TODO: Implementar validação
+  atualizarValidatorsForm() {
+
+    const validator = new AppValidator();
+
+    // CPF/CNPJ
+    this.formGroup.get('cpfCnpj')?.valueChanges.subscribe((value) => {
+      this.mascaraCpfCnpj = value.length > 11 ? '00.000.000/0000-00' : '000.000.000-00';
+      this.formGroup.get('cpfCnpj')?.setValidators(value.length > 11 ? cnpjValidator : cpfValidator);
+      if (!validator.isValidCpfCnpj(value)) { this.formGroup.get('cpfCnpj')?.setErrors({ 'formatoInvalido': true }); };
+    });
+
+    // Telefone
+    this.formGroup.get('telefone')?.valueChanges.subscribe((value) => {
+      if (!validator.isValidTelefone(value)) { this.formGroup.get('telefone')?.setErrors({ 'formatoInvalido': true }); };
+    });
+
+    // Data de Nascimento
+    this.formGroup.get('dataNasc')?.valueChanges.subscribe((value) => {
+      if (!validator.isValidDataNascimento(value)) { this.formGroup.get('dataNasc')?.setErrors({ 'formatoInvalido': true }); };
+    });
+  }
+
   enviar() {
-    this.errorsValidators = getValidationErrors(this.formGroup);
-
-    console.log(this.errorsValidators);
-
+    console.log(this.formGroup);
   }
 }

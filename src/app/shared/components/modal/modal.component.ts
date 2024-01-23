@@ -24,10 +24,11 @@ export class ModalComponent {
   botao: () => void = () => { };
   segundoBotao: () => void = () => { };
   btnCopiarMensagemErro: any;
+  isCopiado: boolean = false;
 
   constructor(private modalService: ModalService, private notificationService: ToastrService) { };
 
-  fecharModal() { this.modalService.hide(); this.exibirModal = false; }
+  fecharModal() { this.modalService.hide(); this.exibirModal = false; this.isCopiado = false; }
 
   abrirModal(modal: ModalConfig, tipoModal: any) {
     modal.isTelaInteira = tipoModal.tamanho === TamanhoModal.TELA_INTEIRA;
@@ -59,6 +60,7 @@ export class ModalComponent {
     document.addEventListener('copy', listener, false);
     document.execCommand('copy');
     document.removeEventListener('copy', listener, false);
+    this.isCopiado = true;
     this.notificationService.info('Erro copiado', '');
   }
 }
