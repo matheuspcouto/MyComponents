@@ -75,120 +75,171 @@
     <form [formGroup]="formGroup" class="col-md-12">
 
       <div class="row mt-3">
-        <div class="form-group col-md-6 mb-3">
-          <label for="nome" class="form-label">Nome</label>
-          <input id="nome" type="text" class="form-control" formControlName="nome" />
-          <div *ngIf="formGroup.controls['nome'].errors">
-            <p *ngIf="formGroup.controls['nome'].errors['nullValidator']" class="text-danger"> O campo Nome é
-              obrigatório
-            </p>
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome *</label>
+          <div class="input-group">
+            <input id="nome" type="text" class="form-control mb-3 mb-3" formControlName="nome"
+              [style]="formGroup.controls['nome'].errors && formGroup.controls['nome'].touched ? 'border-color: red' : ''" />
           </div>
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="sobrenome" class="form-label">Sobrenome</label>
-          <input id="sobrenome" type="text" class="form-control" formControlName="sobrenome" />
-          <div *ngIf="errorsValidators">
-            <div *ngFor="let erro of errorsValidators">
-              <p style="color: red;" *ngIf="erro.controleErro === 'sobrenome'">{{erro.mensagemErro}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col-md-6 mr-3">
-          <label for="idade" class="form-label">Idade</label>
-          <input id="idade" type="number" class="form-control text-center mb-3" formControlName="idade" />
-          <div *ngIf="errorsValidators">
-            <div *ngFor="let erro of errorsValidators">
-              <p style="color: red;" *ngIf="erro.controleErro === 'idade'">{{erro.mensagemErro}}</p>
-            </div>
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['nome'].errors && formGroup.controls['nome'].touched">
+            <p *ngIf="formGroup.controls['nome'].errors['required']" class="text-danger"> Campo obrigatório </p>
           </div>
         </div>
 
         <div class="col-md-6">
-          <label for="dataNasc" class="form-label">Data de Nascimento</label>
-          <input id="dataNasc" type="date" class="form-control" formControlName="dataNasc">
-          <div *ngIf="errorsValidators">
-            <div *ngFor="let erro of errorsValidators">
-              <p style="color: red;" *ngIf="erro.controleErro === 'dataNasc'">{{erro.mensagemErro}}</p>
-            </div>
+          <label for="sobrenome" class="form-label">Sobrenome *</label>
+          <div class="input-group">
+            <input id="sobrenome" type="text" class="form-control mb-3" formControlName="sobrenome"
+              [style]="formGroup.controls['sobrenome'].errors && formGroup.controls['sobrenome'].touched ? 'border-color: red' : ''" />
+
+          </div>
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['sobrenome'].errors && formGroup.controls['sobrenome'].touched">
+            <p *ngIf="formGroup.controls['sobrenome'].errors['required']" class="text-danger"> Campo obrigatório </p>
           </div>
         </div>
       </div>
 
       <div class="row mt-3">
-        <div class="form-group col-md-6">
-          <label for="telefone" class="form-label">Telefone</label>
-          <input id="telefone" type="text" class="form-control mb-3" formControlName="telefone"
-            [mask]="mascaraTelefone" />
-          <div *ngIf="formGroup.controls['telefone'].errors" class="mb-3">
-            <p *ngIf="formGroup.controls['telefone'].errors['formatoInvalido']" class="text-danger"> O campo Telefone
-              não está em um formato válido
+        <div class="col-md-6">
+          <label for="idade" class="form-label">Idade *</label>
+          <input id="idade" type="number" class="form-control mb-3 text-center" formControlName="idade"
+            [style]="formGroup.controls['idade'].errors && formGroup.controls['idade'].touched ? 'border-color: red' : ''" />
+
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['idade'].errors && formGroup.controls['idade'].touched">
+            <p *ngIf="formGroup.controls['idade'].errors['required']" class="text-danger"> Campo obrigatório </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="dataNasc" class="form-label">Data de Nascimento *</label>
+          <input id="dataNasc" type="date" class="form-control mb-3" formControlName="dataNasc"
+            [style]="formGroup.controls['dataNasc'].errors && formGroup.controls['dataNasc'].touched ? 'border-color: red' : ''" />
+
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['dataNasc'].errors && formGroup.controls['dataNasc'].touched">
+            <p *ngIf="formGroup.controls['dataNasc'].errors['formatoInvalido']" class="text-danger"> Formato inválido
             </p>
-          </div>
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-          <input id="cpfCnpj" type="text" class="form-control" formControlName="cpfCnpj" [mask]="mascaraCpfCnpj" />
-          <div *ngIf="errorsValidators">
-            <div *ngFor="let erro of errorsValidators">
-              <p style="color: red;" *ngIf="erro.controleErro === 'cpfCnpj'">{{erro.mensagemErro}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="descricao" class="form-label">Descrição</label>
-        <textarea id="descricao" rows="5" formControlName="descricao" class="form-control"></textarea>
-        <div *ngIf="errorsValidators">
-          <div *ngFor="let erro of errorsValidators">
-            <p style="color: red;" *ngIf="erro.controleErro === 'descricao'">{{erro.mensagemErro}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="email" class="form-label">Email</label>
-        <input id="email" type="text" placeholder="teste@teste.com" formControlName="email" class="form-control" />
-        <div *ngIf="errorsValidators">
-          <div *ngFor="let erro of errorsValidators">
-            <p style="color: red;" *ngIf="erro.controleErro === 'email'">{{erro.mensagemErro}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="senha" class="form-label">Senha</label>
-        <input id="senha" type="password" class="form-control" formControlName="senha" />
-        <div *ngIf="errorsValidators">
-          <div *ngFor="let erro of errorsValidators">
-            <p style="color: red;" *ngIf="erro.controleErro === 'senha'">{{erro.mensagemErro}}</p>
+            <p *ngIf="formGroup.controls['dataNasc'].errors['required']" class="text-danger"> Campo obrigatório </p>
           </div>
         </div>
       </div>
 
       <div class="row mt-3">
-        <div class="form-group col-md-6">
-          <label for="senha" class="form-label">Tipo de Membro</label>
-          <div class="form-group">
-            <select id="tipoMembro" class="form-select form-select-sm" formControlName="tipoMembroSelecionado">
+        <div class="col-md-6">
+          <label for="telefone" class="form-label">Telefone * (Campo com validação)</label>
+          <div class="input-group">
+            <input id="telefone" type="text" class="form-control mb-3 mb-3" formControlName="telefone"
+              [style]="formGroup.controls['telefone'].errors && formGroup.controls['telefone'].touched ? 'border-color: red' : ''"
+              [mask]="mascaraTelefone" />
+            <div class="input-group-append" *ngIf="formGroup.controls['telefone'].touched">
+              <button class="btn btn-link"
+                [style]="formGroup.controls['telefone'].errors ? 'text-decoration: none; color: red;' : 'text-decoration: none; color: green'">
+                <i
+                  [class]="formGroup.controls['telefone'].errors ? 'bi bi-exclamation-circle' : 'bi bi-check-lg'"></i></button>
+            </div>
+          </div>
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['telefone'].errors && formGroup.controls['telefone'].touched">
+            <p *ngIf="formGroup.controls['telefone'].errors['formatoInvalido']" class="text-danger"> Telefone inválido
+            </p>
+            <p *ngIf="formGroup.controls['telefone'].errors['required']" class="text-danger"> Campo obrigatório </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="cpfCnpj" class="form-label">CPF/CNPJ * (Campo com validação)</label>
+          <div class="input-group">
+            <input id="cpfCnpj" type="text" class="form-control mb-3 mb-3" formControlName="cpfCnpj"
+              [mask]="mascaraCpfCnpj"
+              [style]="formGroup.controls['cpfCnpj'].errors && formGroup.controls['cpfCnpj'].touched ? 'border-color: red' : ''" />
+            <div class="input-group-append" *ngIf="formGroup.controls['cpfCnpj'].touched">
+              <button class="btn btn-link"
+                [style]="formGroup.controls['cpfCnpj'].errors ? 'text-decoration: none; color: red;' : 'text-decoration: none; color: green'">
+                <i
+                  [class]="formGroup.controls['cpfCnpj'].errors ? 'bi bi-exclamation-circle' : 'bi bi-check-lg'"></i></button>
+            </div>
+          </div>
+          <div class="formularioErro mb-3"
+            *ngIf="formGroup.controls['cpfCnpj'].errors && formGroup.controls['cpfCnpj'].touched">
+            <p *ngIf="formGroup.controls['cpfCnpj'].errors['formatoInvalido']" class="text-danger"> CPF/CNPJ inválido
+            </p>
+            <p *ngIf="formGroup.controls['cpfCnpj'].errors['required']" class="text-danger"> Campo obrigatório </p>
+          </div>
+        </div>
+
+      </div>
+
+      <label for="descricao" class="form-label mt-3">Descrição</label>
+      <div class="input-group">
+        <textarea id="descricao" rows="5" formControlName="descricao" class="form-control mb-3"></textarea>
+      </div>
+
+      <div class="col-md-12">
+        <label for="email" class="form-label mt-3">Email * (Campo com validação)</label>
+        <div class="input-group">
+          <input id="email" type="text" placeholder="teste@teste.com" formControlName="email"
+            class="form-control mb-3  mb-3"
+            [style]="formGroup.controls['email'].errors && formGroup.controls['email'].touched ? 'border-color: red' : ''" />
+          <div class="input-group-append" *ngIf="formGroup.controls['email'].touched">
+            <button class="btn btn-link"
+              [style]="formGroup.controls['email'].errors ? 'text-decoration: none; color: red;' : 'text-decoration: none; color: green'">
+              <i
+                [class]="formGroup.controls['email'].errors ? 'bi bi-exclamation-circle' : 'bi bi-check-lg'"></i></button>
+          </div>
+        </div>
+        <div class="formularioErro mb-3"
+          *ngIf="formGroup.controls['email'].errors && formGroup.controls['email'].touched">
+          <p *ngIf="formGroup.controls['email'].errors['pattern'] || formGroup.controls['email'].errors['email']"
+            class="text-danger"> Email inválido
+          </p>
+          <p *ngIf="formGroup.controls['email'].errors['required']" class="text-danger"> Campo obrigatório </p>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label for="senha" class="form-label mt-3">Senha *</label>
+        <div class="input-group">
+          <input id="senha" [type]="hide ? 'password' : 'text'" class="form-control mb-3" formControlName="senha"
+            [style]="formGroup.controls['senha'].errors && formGroup.controls['senha'].touched ? 'border-color: red' : ''" />
+          <div class="input-group-append">
+            <button class="btn btn-link" style="text-decoration: none; color: blue;" type="button"
+              (click)="hide = !hide"><i [class]="hide ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></button>
+          </div>
+        </div>
+        <div class="formularioErro mb-3"
+          *ngIf="formGroup.controls['senha'].errors && formGroup.controls['senha'].touched">
+          <p *ngIf="formGroup.controls['senha'].errors['formatoInvalido']" class="text-danger"> Senha inválida
+          </p>
+          <p *ngIf="formGroup.controls['senha'].errors['required']" class="text-danger"> Campo obrigatório </p>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="input-group">
+          <label for="tipoMembroSelecionado" class="form-label">Tipo de Membro</label>
+          <div class="input-group">
+            <select id="tipoMembro" class="form-select form-select-sm" formControlName="tipoMembroSelecionado"
+              [style]="formGroup.controls['tipoMembroSelecionado'].errors && formGroup.controls['tipoMembroSelecionado'].touched ? 'border-color: red' : ''">
               <option *ngFor="let tipo of tiposMembro; let i = index" (selected)="i === 0">
                 {{ tipo }}
               </option>
             </select>
-            <div *ngIf="errorsValidators">
-              <div *ngFor="let erro of errorsValidators">
-                <p style="color: red;" *ngIf="erro.controleErro === 'tipoMembro'">{{erro.mensagemErro}}</p>
-              </div>
+
+            <div class="formularioErro mb-3"
+              *ngIf="formGroup.controls['tipoMembroSelecionado'].errors && formGroup.controls['tipoMembroSelecionado'].touched">
+              <p *ngIf="formGroup.controls['tipoMembroSelecionado'].errors['formatoInvalido']" class="text-danger">
+                Formato inválido
+              </p>
+              <p *ngIf="formGroup.controls['tipoMembroSelecionado'].errors['required']" class="text-danger"> Campo
+                obrigatório </p>
             </div>
           </div>
         </div>
 
-        <div class="form-group col-md-6 mt-3">
+        <div class="input-group mt-3">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" (value)="batizado" id="batizado" formControlName="batizado">
             <label class="form-check-label" for="batizado">Já é batizado ?</label>
@@ -197,7 +248,7 @@
       </div>
 
       <div class="col-12 mt-3">
-        <button class="btn btn-primary" type="submit" (click)="enviar()" [disabled]="formGroup.invalid">Enviar</button>
+        <button class="btn btn-primary" type="submit" (click)="enviar()">Enviar</button>
       </div>
     </form>
 

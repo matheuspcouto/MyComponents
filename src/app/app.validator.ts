@@ -9,25 +9,20 @@ export interface ErroForm {
 
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 export const emailValidator = [
-  Validators.required,
-  Validators.nullValidator,
   Validators.email,
+  Validators.required,
   Validators.pattern(regexEmail)
 ];
 
 const regexCnpj = /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2})$/;
 export const cnpjValidator = [
   Validators.minLength(14),
-  Validators.required,
-  Validators.nullValidator,
   Validators.pattern(regexCnpj)
 ];
 
 const regexCpf = /^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}$/;
 export const cpfValidator = [
   Validators.minLength(11),
-  Validators.required,
-  Validators.nullValidator,
   Validators.pattern(regexCpf)
 ];
 
@@ -35,7 +30,6 @@ const regexTelefone = /^\(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579]
 export const telefoneValidator = [
   Validators.minLength(11),
   Validators.required,
-  Validators.nullValidator,
   Validators.pattern(regexTelefone)
 ];
 

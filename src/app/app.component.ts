@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, TipoModal } from './shared/components/modal/modal.component';
 import { Rotas } from './shared/enums/rotas-enum';
 import { FluxoErro } from './shared/fluxo-erro';
@@ -11,37 +11,57 @@ import { emailValidator, telefoneValidator, AppValidator, cnpjValidator, cpfVali
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'MyComponents';
   loading = false;
+  hide = true;
   erro: any;
+  mascaraTelefone = '(00) 00000-0000';
+  mascaraCpfCnpj = '000.000.000-009';
   tiposMembro = ['Membro', 'Líder', 'Pastor'];
   sexos = ['Masculino', 'Feminino'];
   @ViewChild('modal', { static: true }) modal: ModalComponent | undefined;
 
   formGroup: FormGroup = this.formBuild.group({
-    nome: ['', Validators.nullValidator],
-    sobrenome: ['', Validators.nullValidator],
-    idade: ['', Validators.nullValidator],
-    dataNasc: ['', Validators.nullValidator],
-    telefone: ['', telefoneValidator],
-    cpfCnpj: ['', Validators.nullValidator],
-    descricao: [''],
-    email: ['', emailValidator],
-    senha: ['', Validators.nullValidator],
-    tipoMembroSelecionado: [this.tiposMembro[0], Validators.nullValidator],
+    nome: [null, Validators.required],
+    sobrenome: [null, Validators.required],
+    idade: [null, Validators.required],
+    dataNasc: [null, Validators.required],
+    telefone: [null, telefoneValidator],
+    cpfCnpj: [null, Validators.required],
+    descricao: [null],
+    email: [null, emailValidator],
+    senha: [null, Validators.required],
+    tipoMembroSelecionado: [this.tiposMembro[0]],
     batizado: [false],
+  }, {
+    validators: [(formGroup: FormGroup) => {
+      const appValidator = new AppValidator();
+      const cpfCnpj = formGroup.get('cpfCnpj');
+      const telefone = formGroup.get('telefone');
+      const dataNasc = formGroup.get('dataNasc');
+
+      cpfCnpj?.valueChanges.subscribe((value) => {
+        this.mascaraCpfCnpj = value.length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
+      });
+
+      if (cpfCnpj?.value && !appValidator.isValidCpfCnpj(cpfCnpj.value)) {
+        cpfCnpj.setErrors({ 'formatoInvalido': true });
+      }
+
+      if (telefone?.value && !appValidator.isValidTelefone(telefone.value)) {
+        telefone.setErrors({ 'formatoInvalido': true });
+      }
+
+      if (dataNasc?.value && !appValidator.isValidDataNascimento(dataNasc.value)) {
+        dataNasc.setErrors({ 'formatoInvalido': true });
+      }
+    }]
   });
-  errorsValidators: any;
-  mascaraTelefone = '(00) 00000-0000';
-  mascaraCpfCnpj = '000.000.000-00';
+
   batizado: boolean = false;
 
   constructor(private notificationService: ToastrService, private formBuild: FormBuilder) { }
-
-  ngOnInit() {
-    this.atualizarValidatorsForm();
-  }
 
   abrirModalConfirmacao() {
     const MODAL = {
@@ -117,6 +137,11 @@ export class AppComponent implements OnInit {
   }
 
   enviar() {
+    if (this.formGroup.invalid) {
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     console.log(this.formGroup);
   }
 }
