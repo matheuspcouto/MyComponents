@@ -1,3 +1,4 @@
+import { LoaderService } from './shared/components/loader/loader.service';
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, TipoModal } from './shared/components/modal/modal.component';
 import { Rotas } from './shared/enums/rotas-enum';
@@ -61,7 +62,7 @@ export class AppComponent {
 
   batizado: boolean = false;
 
-  constructor(private notificationService: ToastrService, private formBuild: FormBuilder) { }
+  constructor(private notificationService: ToastrService, private formBuild: FormBuilder, private loaderService: LoaderService) { }
 
   abrirModalConfirmacao() {
     const MODAL = {
@@ -103,8 +104,8 @@ export class AppComponent {
   }
 
   abrirLoading() {
-    this.loading = true;
-    setTimeout(() => this.loading = false, 5000);
+    this.loaderService.showLoader();
+    setTimeout(() => this.loaderService.hideLoader(), 5000);
   }
 
   mostrarNotificacao() {
