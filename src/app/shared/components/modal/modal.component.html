@@ -1,35 +1,75 @@
-<div *ngIf="exibirModal && modal" class="modal">
-  <div *ngIf="!modal.isTelaInteira" class="modal-dialog modal-dialog-centered">
+<!-- Mobile -->
+<div *ngIf="exibirModal && modal" class="modal mobile">
+
+  <div *ngIf="!isTelaInteira" class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-metade-tela">
+      <div class="modal-header mb-5">
+        <img *ngIf="modal.imagem" [src]="'assets/' + modal.imagem" style="max-width: 100%; max-height: 200px;">
+      </div>
       <div class="modal-body">
         <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
         <h5 class="modal-title">{{ modal.texto }}</h5>
       </div>
       <div class="modal-footer modal-footer-metade-tela">
-        <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary" style="border: none; animation: none;"
-          (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
+        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+        <button *ngIf="modal.textoSegundoBotao" class="btn btn-link"
+          style="text-decoration: none; color: blue" (click)="segundoBotao()">{{ modal.textoSegundoBotao }}
+        </button>
+        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link"
+          style="text-decoration: none; color: gray" (click)="copiarCodigo($event)"><i
+            [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
+          Copiar Erro
+        </button>
       </div>
     </div>
   </div>
 
-  <div *ngIf="modal.isTelaInteira">
+  <div *ngIf="isTelaInteira">
     <div class="modal-content modal-tela-cheia">
-      <div class="modal-header">
-        <img *ngIf="modal.imagem" [src]="modal.imagem" class="img img-fluid">
+      <div class="modal-header mb-5">
+        <img *ngIf="modal.imagem" [src]="'assets/' + modal.imagem" style="max-width: 80%; max-height: 200px;">
       </div>
       <div class="modal-body modal-body-tela-cheia">
         <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
+        <h5 class="modal-title" *ngIf="btnCopiarMensagemErro">Detalhes:</h5>
         <h5 class="modal-title">{{ modal.texto }}</h5>
       </div>
       <div class="modal-footer modal-footer-tela-cheia">
-        <button type="button" class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" type="button" class="btn btn-outline-primary" style="border: none"
+        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+        <button *ngIf="modal.textoSegundoBotao" class="btn btn-outline-primary" style="border: none"
           (click)="segundoBotao()">{{ modal.textoSegundoBotao }}</button>
 
-        <button *ngIf="btnCopiarMensagemErro" type="button" class="btn btn-link" style="text-decoration: none; color: gray;"
-          (click)="copiarCodigo($event)"><i [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
-          Copiar Erro</button>
+        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link"
+          style="text-decoration: none; color: gray" (click)="copiarCodigo($event)"><i
+            [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
+          Copiar Erro
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Desktop -->
+<div *ngIf="exibirModal && modal" class="modal desktop">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-desktop">
+      <div class="modal-header mb-5">
+        <img *ngIf="modal.imagem" [src]="'assets/' + modal.imagem" style="max-width: 100%; max-height: 200px;">
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
+        <h5 class="modal-title">{{ modal.texto }}</h5>
+      </div>
+      <div class="modal-footer modal-desktop">
+        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+        <button *ngIf="modal.textoSegundoBotao" class="btn btn-link"
+          style="text-decoration: none; color: blue" (click)="segundoBotao()">{{ modal.textoSegundoBotao }}
+        </button>
+        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link"
+          style="text-decoration: none; color: gray" (click)="copiarCodigo($event)"><i
+            [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
+          Copiar Erro
+        </button>
       </div>
     </div>
   </div>

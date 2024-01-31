@@ -4,7 +4,6 @@ export interface ModalConfig {
   titulo: string,
   texto: string,
   textoBotao: string,
-  isTelaInteira?: boolean,
   imagem?: string,
   botao?: () => void,
   textoSegundoBotao?: string,

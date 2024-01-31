@@ -14,7 +14,6 @@ import { emailValidator, telefoneValidator, AppValidator, cnpjValidator, cpfVali
 })
 export class AppComponent {
   title = 'MyComponents';
-  loading = false;
   hide = true;
   erro: any;
   mascaraTelefone = '(00) 00000-0000';
@@ -138,11 +137,6 @@ export class AppComponent {
   }
 
   enviar() {
-    if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched();
-      return;
-    }
-
     console.log(this.formGroup);
   }
 }

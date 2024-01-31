@@ -12,6 +12,7 @@ export const TipoModal = {
   CONFIRMACAO: { tipo: 'confirmacao', tamanho: TamanhoModal.METADE_TELA },
   AVISO: { tipo: 'aviso', tamanho: TamanhoModal.TELA_INTEIRA },
   ERRO: { tipo: 'erro', tamanho: TamanhoModal.TELA_INTEIRA },
+  SUCESSO: { tipo: 'sucesso', tamanho: TamanhoModal.TELA_INTEIRA }
 }
 @Component({
   selector: 'modal',
@@ -25,13 +26,14 @@ export class ModalComponent {
   segundoBotao: () => void = () => { };
   btnCopiarMensagemErro: any;
   isCopiado: boolean = false;
+  isTelaInteira: boolean = false;
 
   constructor(private modalService: ModalService, private notificationService: ToastrService) { };
 
   fecharModal() { this.modalService.hide(); this.exibirModal = false; this.isCopiado = false; }
 
   abrirModal(modal: ModalConfig, tipoModal: any) {
-    modal.isTelaInteira = tipoModal.tamanho === TamanhoModal.TELA_INTEIRA;
+    this.isTelaInteira = tipoModal.tamanho === TamanhoModal.TELA_INTEIRA;
     this.botao = modal.botao || this.fecharModal;
     this.btnCopiarMensagemErro = tipoModal === TipoModal.ERRO;
 

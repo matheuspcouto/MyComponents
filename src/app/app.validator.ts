@@ -34,9 +34,6 @@ export const telefoneValidator = [
 ];
 
 export class AppValidator {
-  static isValidCpfCnpj(value: any) {
-    throw new Error('Method not implemented.');
-  }
 
   isValidDataNascimento(dataNascimento: string) {
     const dataAtual = new Date();

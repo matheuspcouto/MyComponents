@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Cores */
+  --azul-claro: #17CCE9;
+  --azul-escuro: #3E4095;
+  --bege: #F5EBD1;
+  --cinza: #e5e5e5ab;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--azul-escuro);
+}
+
+a {
+  text-decoration: none;
+  color: var(--azul-escuro);
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile {
+    display: flex;
+  }
+
+  .desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: flex;
+  }
+}
+
+.btn-link {
+  text-decoration: none;
+}
