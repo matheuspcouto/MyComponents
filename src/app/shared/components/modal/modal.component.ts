@@ -63,6 +63,6 @@ export class ModalComponent {
     document.execCommand('copy');
     document.removeEventListener('copy', listener, false);
     this.isCopiado = true;
-    this.notificationService.info('Erro copiado', '');
+    this.notificationService.info('Copiado para área de transferência', '');
   }
 }

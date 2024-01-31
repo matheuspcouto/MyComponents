@@ -25,26 +25,26 @@ a {
   padding: 0px;
 }
 
+.btn-link {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .mobile {
-    display: flex;
+    display: flex !important;
   }
 
   .desktop {
-    display: none;
+    display: none !important;
   }
 }
 
 @media screen and (min-width: 769px) {
   .mobile {
-    display: none;
+    display: none !important;
   }
 
   .desktop {
-    display: flex;
+    display: flex !important;
   }
-}
-
-.btn-link {
-  text-decoration: none;
 }
