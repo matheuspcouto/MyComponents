@@ -84,7 +84,7 @@ export class AppComponent {
       botao: () => console.log('Modal Aberto'),
       textoSegundoBotao: 'Fechar',
       segundoBotao: () => { console.log('Modal Fechado'); this.modal?.fecharModal(); },
-      imagem: 'sucesso.png',
+      imagem: 'success.png',
     }
 
     this.modal?.abrirModal(MODAL, TipoModal.SUCESSO);

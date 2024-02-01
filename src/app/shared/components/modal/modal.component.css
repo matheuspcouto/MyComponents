@@ -1,6 +1,6 @@
 /* Valores Constantes */
 .modal {
-  display: flex !important;
+  display: flex;
   backdrop-filter: blur(8px);
   margin: 0 auto;
 }
@@ -53,29 +53,29 @@
 }
 
 /* Valores Desktop/Tablet */
-@media screen and (min-width: 769px) {
+@media (min-width: 769px) {
   .modal-dialog {
     width: 70%;
   }
 
   .modal-content {
-    height: 50%;
+    height: 60%;
   }
 
   .modal-footer {
-    height: 40%;
+    height: 30%;
   }
 
   .btn {
     margin: 0 auto 5 auto;
-    width: 95% !important;
+    width: 80% !important;
     height: 30%;
   }
 
 }
 
 /* Valores Smartphone */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .modal-dialog {
     width: 100%;
   }
@@ -97,7 +97,7 @@
   }
 
   .modal-footer-metade-tela {
-    height: 50%;
+    height: 40%;
     border-top: none;
   }
 
