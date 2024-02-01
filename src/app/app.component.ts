@@ -66,6 +66,7 @@ export class AppComponent {
   abrirModalConfirmacao() {
     const MODAL = {
       titulo: 'Modal de Confirmação',
+      tipoModal: TipoModal.CONFIRMACAO,
       texto: 'Este é um modal de confirmação',
       textoBotao: 'OK',
       botao: () => console.log('Modal Aberto'),
@@ -73,21 +74,21 @@ export class AppComponent {
       segundoBotao: () => { console.log('Modal Fechado'); this.modal?.fecharModal(); },
     }
 
-    this.modal?.abrirModal(MODAL, TipoModal.CONFIRMACAO);
+    this.modal?.abrirModal(MODAL);
   }
 
   abrirModalSucesso() {
     const MODAL = {
       titulo: 'Modal de Sucesso',
+      tipoModal: TipoModal.SUCESSO,
       texto: 'Parabéns, você conseguiu realizar uma ação com sucesso',
       textoBotao: 'OK',
       botao: () => console.log('Modal Aberto'),
       textoSegundoBotao: 'Fechar',
       segundoBotao: () => { console.log('Modal Fechado'); this.modal?.fecharModal(); },
-      imagem: 'success.png',
     }
 
-    this.modal?.abrirModal(MODAL, TipoModal.SUCESSO);
+    this.modal?.abrirModal(MODAL);
   }
 
   abrirModalErro() {
@@ -95,13 +96,13 @@ export class AppComponent {
 
     const MODAL = {
       titulo: this.erro.titulo,
+      tipoModal: TipoModal.ERRO,
       texto: this.erro.mensagem,
       textoBotao: 'OK',
-      imagem: 'error.png',
       botao: () => this.modal?.fecharModal(),
     }
 
-    this.modal?.abrirModal(MODAL, TipoModal.ERRO);
+    this.modal?.abrirModal(MODAL);
   }
 
   abrirLoading() {

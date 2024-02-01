@@ -5,6 +5,7 @@ export interface ModalConfig {
   texto: string,
   textoBotao: string,
   imagem?: string,
+  tipoModal?: any,
   botao?: () => void,
   textoSegundoBotao?: string,
   segundoBotao?: () => void

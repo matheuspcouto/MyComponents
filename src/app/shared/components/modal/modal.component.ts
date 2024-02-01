@@ -9,10 +9,10 @@ enum TamanhoModal {
 }
 
 export const TipoModal = {
-  CONFIRMACAO: { tipo: 'confirmacao', tamanho: TamanhoModal.METADE_TELA },
-  AVISO: { tipo: 'aviso', tamanho: TamanhoModal.TELA_INTEIRA },
-  ERRO: { tipo: 'erro', tamanho: TamanhoModal.TELA_INTEIRA },
-  SUCESSO: { tipo: 'sucesso', tamanho: TamanhoModal.TELA_INTEIRA }
+  CONFIRMACAO: { tamanho: TamanhoModal.METADE_TELA },
+  AVISO: { tamanho: TamanhoModal.TELA_INTEIRA },
+  ERRO: { tamanho: TamanhoModal.TELA_INTEIRA, imagem: 'error.png' },
+  SUCESSO: { tamanho: TamanhoModal.TELA_INTEIRA, imagem: 'success.png' }
 }
 @Component({
   selector: 'modal',
@@ -32,10 +32,13 @@ export class ModalComponent {
 
   fecharModal() { this.modalService.hide(); this.exibirModal = false; this.isCopiado = false; }
 
-  abrirModal(modal: ModalConfig, tipoModal: any) {
-    this.isTelaInteira = tipoModal.tamanho === TamanhoModal.TELA_INTEIRA;
+  abrirModal(modal: ModalConfig) {
+    this.isTelaInteira = modal.tipoModal.tamanho === TamanhoModal.TELA_INTEIRA; // apenas para Mobile
+
+    if (!modal.imagem && modal.tipoModal.imagem) { modal.imagem = modal.tipoModal.imagem; }
+
     this.botao = modal.botao || this.fecharModal;
-    this.btnCopiarMensagemErro = tipoModal === TipoModal.ERRO;
+    this.btnCopiarMensagemErro = modal.tipoModal === TipoModal.ERRO;
 
     if (modal.textoSegundoBotao && modal.segundoBotao) {
       this.segundoBotao = modal.segundoBotao;
