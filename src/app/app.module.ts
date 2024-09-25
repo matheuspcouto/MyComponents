@@ -8,12 +8,13 @@ import { ModalComponent } from './shared/components/modal/modal.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './guards/auth.guard';
 import { SiteAtivoGuard } from './guards/site-ativo.guard';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { LoaderService } from './shared/components/loader/loader.service';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoaderService } from './shared/components/loader/loader.service';
     ModalComponent,
     LoaderComponent,
     FooterComponent,
+    HeaderComponent
   ],
   imports: [
     HttpClientModule,
@@ -28,7 +30,8 @@ import { LoaderService } from './shared/components/loader/loader.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
@@ -38,7 +41,7 @@ import { LoaderService } from './shared/components/loader/loader.service';
 
     }),
   ],
-  providers: [SiteAtivoGuard, AuthGuard,
+  providers: [SiteAtivoGuard, AuthGuard, provideNgxMask(),
     { provide: HTTP_INTERCEPTORS, useClass: LoaderService, multi: true }],
   bootstrap: [AppComponent]
 })
