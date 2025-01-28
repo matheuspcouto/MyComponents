@@ -1,33 +1,21 @@
 <!-- ======= Header ======= -->
-<!-- Se quiser que a barra fique fixa: adiciona 'fixed-top' na class -->
-<header id="header" class="header d-flex align-items-center header-desktop"
+<header id="header" class="header fixed-top d-flex align-items-center header-desktop"
   [style]="showMenu ? 'display: flex' : 'display: none !important'">
   <div class="container d-flex align-items-center justify-content-between">
 
-    <a routerLink="/" class="logo d-flex align-items-center me-auto me-lg-0">
-      <img
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    <a routerLink="/" class="logo d-flex align-items-center me-auto me-lg-0" (click)="setAbaAtiva(0)">
+      <img src="assets/img/logo.png">
     </a>
 
     <nav id="navbar" class="navbar">
       <ul>
-        <div *ngFor="let item of itensMenu">
-          <li *ngIf="item.ativo"><a [routerLink]="item.rota">{{ item.titulo }}</a></li>
+        <div *ngFor="let item of itensMenu; let i = index">
+          <li *ngIf="item.ativo">
+            <a (click)="setAbaAtiva(i)" [routerLink]="item.rota" [ngClass]="item.focado ? 'active show' : ''">
+              {{ item.titulo }}
+            </a>
+          </li>
         </div>
-
-        <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i
-              class="bi bi-chevron-down dropdown-indicator"></i></a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                  class="bi bi-chevron-down dropdown-indicator"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-          </ul>
-        </li> -->
       </ul>
     </nav>
 
@@ -40,12 +28,11 @@
   <div class="container d-flex align-items-center justify-content-center" data-backdrop="static">
 
     <a routerLink="/" class="logo d-flex align-items-center me-auto me-lg-0">
-      <img
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+      <img src="assets/img/logo.png">
     </a>
 
     <button type="button" (click)="isClicado = !isClicado"
-      [class]="!isClicado ? 'mobile-nav-toggle mobile-nav-show bi bi-list' : 'mobile-nav-toggle mobile-nav-show bi bi-x'"
+      [ngClass]="!isClicado ? 'mobile-nav-toggle mobile-nav-show bi bi-list' : 'mobile-nav-toggle mobile-nav-show bi bi-x'"
       data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"></button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" data-bs-backdrop="static" id="offcanvasExample"
@@ -54,9 +41,12 @@
       </div>
       <div class="offcanvas-body">
         <ul>
-          <li><a routerLink="/"><i class="bi bi-house-fill"></i>Home</a></li>
-          <div *ngFor="let item of itensMenu">
-            <li *ngIf="item.ativo"><a [routerLink]="item.rota"><i [class]="item.icone"></i>{{ item.titulo }}</a></li>
+          <div *ngFor="let item of itensMenu; let i = index">
+            <li *ngIf="item.ativo">
+              <a (click)="setAbaAtiva(i)" [routerLink]="item.rota" [ngClass]="item.focado ? 'active show' : ''">
+                <i [class]="item.icone"></i> {{ item.titulo }}
+              </a>
+            </li>
           </div>
         </ul>
       </div>
@@ -64,8 +54,10 @@
         <hr>
         <h4 class="mb-3">Siga-nos</h4>
         <div class="social-links">
-          <a href="" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.instagram.com/palmasmetodista/?hl=pt-br" target="_blank" class="instagram"><i
+              class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/@palmasmetodista" target="_blank" class="youtube"><i
+              class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>

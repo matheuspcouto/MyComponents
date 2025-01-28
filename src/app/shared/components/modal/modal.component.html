@@ -1,70 +1,25 @@
-<!-- Mobile -->
-<div *ngIf="exibirModal && modal" class="mobile modal">
+<div *ngIf="exibirModal && modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <!-- Imagem -->
+      <img *ngIf="modal.imagem" [src]="'assets/img/modal/' + modal.imagem" class="modal-image">
 
-  <div *ngIf="!isTelaInteira" class="modal-dialog modal-dialog-centered">
-    <div class="modal-content modal-metade-tela">
-      <div class="modal-body p-0">
-        <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
-        <h5 class="modal-title">{{ modal.texto }}</h5>
-      </div>
-      <div class="modal-footer modal-footer-metade-tela">
-        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" class="btn btn-link" (click)="segundoBotao()">{{ modal.textoSegundoBotao
-          }}
-        </button>
-        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link" style="color: gray" (click)="copiarCodigo($event)"><i
-            [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
-          Copiar Erro
-        </button>
-      </div>
+      <!-- Título -->
+      <h2 class="modal-title">{{ modal.titulo }}</h2>
+
+      <!-- Descrição -->
+      <p class="modal-description">{{ modal.texto }}</p>
     </div>
-  </div>
 
-  <div *ngIf="isTelaInteira">
-    <div class="modal-content modal-tela-cheia">
-      <div class="modal-header mb-5" *ngIf="modal.imagem">
-        <img [src]="'assets/img/modal/' + modal.imagem" style="max-width: 150px; max-height: 150px;">
-      </div>
-      <div class="modal-body p-0 modal-body-tela-cheia">
-        <h3 class="modal-title mb-3 mt-5">{{ modal.titulo }}</h3>
-        <h5 class="modal-title mb-3" *ngIf="btnCopiarMensagemErro">Detalhes:</h5>
-        <h5 class="modal-title">{{ modal.texto }}</h5>
-      </div>
-      <div class="modal-footer modal-footer-tela-cheia">
-        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" class="btn btn-link" (click)="segundoBotao()">{{ modal.textoSegundoBotao
-          }}</button>
-
-        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link" style="color: gray" (click)="copiarCodigo($event)">
-          <i [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
-          Copiar Erro
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Desktop -->
-<div *ngIf="exibirModal && modal" class="desktop modal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" [style]="modal.imagem ? 'height: 60% !important' : 'height: 40% !important'">
-      <div class="modal-header" *ngIf="modal.imagem">
-        <img [src]="'assets/img/modal/' + modal.imagem" style="width: 150px; height: 150px;">
-      </div>
-      <div class="modal-body p-0">
-        <h3 class="modal-title mb-3">{{ modal.titulo }}</h3>
-        <h5 class="modal-title">{{ modal.texto }}</h5>
-      </div>
-      <div class="modal-footer" [style]="modal.imagem ? 'height: 30% !important' : 'height: 40% !important'">
-        <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
-        <button *ngIf="modal.textoSegundoBotao" class="btn btn-link" (click)="segundoBotao()">{{ modal.textoSegundoBotao
-          }}
-        </button>
-        <button *ngIf="btnCopiarMensagemErro" class="btn btn-link" style="color: gray" (click)="copiarCodigo($event)"><i
-            [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
-          Copiar Erro
-        </button>
-      </div>
+    <!-- Botões -->
+    <div class="modal-buttons">
+      <button class="btn btn-primary" (click)="botao()">{{ modal.textoBotao }}</button>
+      <button *ngIf="modal.textoSegundoBotao" class="btn btn-link" (click)="segundoBotao()">{{ modal.textoSegundoBotao}}
+      </button>
+      <button *ngIf="btnCopiarMensagemErro" class="btn btn-link" style="color: gray" (click)="copiarCodigo($event)"><i
+          [class]="isCopiado ? 'bi bi-clipboard-check' : 'bi bi-clipboard'"></i>
+        Copiar Erro
+      </button>
     </div>
   </div>
 </div>

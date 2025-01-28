@@ -8,37 +8,27 @@
 
   <div class="card-container">
     <button class="card card-small" (click)="abrirModalConfirmacao()" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
+      <i class="bi bi-check-lg me-2"></i>
       <span>Modal de Confirmação</span>
     </button>
 
     <button class="card card-small" (click)="abrirModalSucesso()" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
+      <i class="bi bi-check-all me-2"></i>
       <span>Modal de Sucesso</span>
     </button>
 
     <button class="card card-small" (click)="abrirModalErro()" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
+      <i class="bi bi-bug me-2"></i>
       <span>Modal de Erro</span>
     </button>
 
     <button class="card card-small" (click)="abrirLoading()" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
+      <i class="bi bi-arrow-clockwise me-2"></i>
       <span>Loadder</span>
     </button>
 
     <button class="card card-small" (click)="mostrarNotificacao()" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
+      <i class="bi bi-info-circle me-2"></i>
       <span>Notificação Toast</span>
     </button>
 
@@ -197,7 +187,7 @@
         <div class="input-group">
           <select id="tipoMembro" class="form-select form-select-sm" formControlName="tipoMembroSelecionado"
             [style]="formGroup.controls['tipoMembroSelecionado'].errors && formGroup.controls['tipoMembroSelecionado'].touched ? 'border-color: red' : ''">
-            <option *ngFor="let tipo of tiposMembro; let i = index" (selected)="i === 0">
+            <option *ngFor="let tipo of tiposMembro; index as i" (selected)="i === 0">
               {{ tipo }}
             </option>
           </select>
@@ -226,7 +216,7 @@
     </div>
   </form>
 
-<!--   <router-outlet></router-outlet>
+  <!--   <router-outlet></router-outlet>
  -->
 
   <modal #modal></modal>
@@ -234,6 +224,5 @@
   <h2 class="mt-5">Footer</h2>
 </div>
 
-<hr class="my-4">
 <app-footer></app-footer>
 <loader></loader>

@@ -53,8 +53,8 @@ export class ModalComponent {
     event.preventDefault();
     const payload: string = this.modal.texto;
 
-    let listener = (e: ClipboardEvent) => {
-      let clipboard = e.clipboardData || null;
+    const listener = (e: ClipboardEvent) => {
+      const clipboard = e.clipboardData || null;
 
       if (clipboard !== null) {
         clipboard.setData('text', payload.toString());
