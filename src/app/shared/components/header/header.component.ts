@@ -22,6 +22,7 @@ export class HeaderComponent {
 
   constructor() {
     this.showMenu = new SiteAtivoGuard(new Router()).siteAtivo;
+    this.itensMenu.forEach((item: any) => { if (item.rota === window.location.pathname) item.focado = true; });
   }
 
   // Função para alternar o estado de 'focado' do item clicado
